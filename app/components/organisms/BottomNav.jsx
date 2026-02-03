@@ -7,7 +7,6 @@ const navItems = [
   { href: "/feed", iconSrc: "/_ionicons_svg_ios-pulse.png", label: "Trends" },
   { href: "/categories", iconSrc: "/_ionicons_svg_ios-microphone.png", label: "Categories" },
   { href: "/", iconSrc: "/_ionicons_svg_md-wifi.png", label: "Home", isCenter: true },
-  { href: "/playlists", iconSrc: "/_ionicons_svg_ios-musical-note.png", label: "Playlists" },
   { darkMode: true, iconSrc: "/_ionicons_svg_ios-contrast.png", label: "Dark mode" },
   { href: "/profile", iconSrc: "/Path%20343.png", label: "Profile" },
 ];  
