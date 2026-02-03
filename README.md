@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# iPlayMusic – Spotify Music App
 
-## Getting Started
+A Next.js Spotify music app with login, playlists, and playback.
 
-First, run the development server:
+## Requirements (Aflevering)
+
+- ✅ **Login** – Spotify OAuth login
+- ✅ **Playlists** – Browse your Spotify playlists
+- ✅ **Player** – Play music (preview or full with Spotify Premium)
+
+## Quick Start
+
+### 1. Install & run
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://127.0.0.1:3000](http://127.0.0.1:3000)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### 2. Spotify setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Go to [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
+2. Create an app
+3. Add Redirect URI: `http://127.0.0.1:3000/api/auth/callback`
+4. Copy Client ID and Client Secret
 
-## Learn More
+### 3. Environment variables
 
-To learn more about Next.js, take a look at the following resources:
+Create a `.env` file. Copy `env.example` to `.env` and add your credentials:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+cp env.example .env
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Edit `.env`:
 
-## Deploy on Vercel
+```
+NEXT_PUBLIC_CLIENT_ID=your_client_id
+CLIENT_SECRET=your_client_secret
+SPOTIFY_REDIRECT_URI=http://127.0.0.1:3000/api/auth/callback
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment (Vercel)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Push to GitHub and make the repo **public**
+2. Import the project in [Vercel](https://vercel.com)
+3. Add the env variables in Vercel project settings
+4. Set `SPOTIFY_REDIRECT_URI` to your production callback, e.g.  
+   `https://your-app.vercel.app/api/auth/callback`
+5. Add the same URI in the Spotify Dashboard Redirect URIs
+
+## Tech
+
+- Next.js 16
+- React 19
+- Tailwind CSS
+- Spotify Web API & Web Playback SDK

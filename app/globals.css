@@ -1,26 +1,143 @@
 @import "tailwindcss";
 
+/* Tailwind v4 default `dark:` uses prefers-color-scheme.
+  This project toggles a `.dark` class on <html>, so we rebind the variant. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* iPlayMusic Figma Design Tokens */
+  /* Primary gradient: #FF6A00 → #EE0979 */
+  --color-primary: #FF6A00;
+  --color-primary-dark: #E55A00;
+  --color-primary-end: #EE0979;
+  --color-accent: #FF1168;
+  
+  /* Background Colors */
+  --color-bg: #FFFFFF;
+  --color-bg-alt: #F5F6FA;
+  --color-bg-dark: #341931;
+  --color-bg-darker: #111625;
+  
+  /* Text Colors */
+  --color-text-primary: #341931;
+  --color-text-secondary: #6B7280;
+  
+  /* Utility Colors */
+  --color-border: #E5E7EB;
+  --color-success: #10B981;
+  --color-error: #EF4444;
+  
+  /* Radius - Figma: 8px cards, 50px pills */
+  --radius-card: 8px;
+  --radius-pill: 50px;
+  --radius-avatar: 999px;
+  --radius-button: 8px;
+  
+  /* Spacing - Figma: 25px typical padding */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 20px;
+  --spacing-2xl: 24px;
+  --spacing-page: 25px;
+  
+  /* Typography - Poppins */
+  --font-size-xs: 10px;
+  --font-size-sm: 12px;
+  --font-size-base: 15px;
+  --font-size-lg: 20px;
+  --font-size-xl: 24px;
+  --font-size-2xl: 32px;
+  --font-size-3xl: 36px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Dark Mode - iPlayMusic Figma */
+.dark {
+  --color-primary: #FF6A00;
+  --color-primary-end: #EE0979;
+  --color-accent: #FF1168;
+  --color-bg: #341931;
+  --color-bg-alt: #2a1427;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: rgba(255,255,255,0.7);
+  --color-border: rgba(255,255,255,0.2);
+  --color-success: #34D399;
+  --color-error: #F87171;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer utilities {
+  @keyframes blob {
+    0%, 100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+
+  /* Bass pulse - slow, rhythmic movement synced to the beat of the music */
+  @keyframes speaker-shake {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.03); }
+    50% { transform: scale(0.98); }
+    75% { transform: scale(1.02); }
+  }
+
+  .animate-speaker-shake {
+    animation: speaker-shake 0.6s ease-in-out infinite;
+  }
+
+  /* Wavy lines - sound wave pulse */
+  @keyframes wave-flow {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  .animate-wave-flow {
+    animation: wave-flow 0.6s ease-in-out infinite;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #FF6A00, #EE0979);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #FF1168, #EE0979);
+  }
+
+  /* Hide scrollbar */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }
